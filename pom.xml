@@ -17,6 +17,7 @@
     <!-- Define Jakarta EE / Java EE version (consider updating this if possible) -->
     <!-- Note: Java EE 6 is very old, consider migrating to Jakarta EE for modern Java -->
     <javaee.web.api.version>6.0</javaee.web.api.version>
+    <java.version>21</java.version>
   </properties>
 
 
