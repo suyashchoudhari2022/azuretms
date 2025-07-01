@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.yash.tmsapp</groupId>
+  <artifactId>tenantmanagement</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>tenantmanagement Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <!-- Define Java version centrally -->
+    <maven.compiler.source>22</maven.compiler.source>
+    <maven.compiler.target>22</maven.compiler.target>
+    <!-- Define Spring version centrally -->
+    <spring.version>4.3.7.RELEASE</spring.version>
+    <!-- Define Jakarta EE / Java EE version (consider updating this if possible) -->
+    <!-- Note: Java EE 6 is very old, consider migrating to Jakarta EE for modern Java -->
+    <javaee.web.api.version>6.0</javaee.web.api.version>
+  </properties>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+      <version>${javaee.web.api.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Spring Dependencies -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- JSTL -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <!-- Database Dependencies -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>2.1.1</version> <!-- This is also old, consider updating -->
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.30</version>
+    </dependency>
+
+    <!-- Test Dependency -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version> <!-- JUnit 3 is very old, consider updating to JUnit 4 or 5 -->
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <!-- Update to a recent version that supports modern Java -->
+        <version>3.11.0</version>
+        <configuration>
+          <!-- Source and target are defined in properties -->
+          <!-- <source>${maven.compiler.source}</source> -->
+          <!-- <target>${maven.compiler.target}</target> -->
+          <!-- REMOVED: compilerArguments endorseddirs which are obsolete -->
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <!-- Update to a recent version -->
+        <version>3.3.2</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+
+      <!-- REMOVED: maven-dependency-plugin execution that copied endorsed API -->
+      <!-- This is no longer needed or valid with modern Java versions -->
+
+    </plugins>
+    <finalName>tenantmanagement</finalName>
+  </build>
+</project>
