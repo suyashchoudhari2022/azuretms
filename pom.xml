@@ -9,18 +9,21 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <!-- Define Java version centrally -->
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
+    <!-- Java 17 for Azure compatibility -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- Define Spring version centrally -->
-    <spring.version>4.3.7.RELEASE</spring.version>
-    <!-- Define Jakarta EE / Java EE version -->
-    <javaee.web.api.version>6.0</javaee.web.api.version>
-    <java.version>21</java.version>
+
+    <!-- Updated Spring version (last 4.x release) -->
+    <spring.version>4.3.30.RELEASE</spring.version>
+
+    <!-- Java EE 8 for Tomcat 9 compatibility -->
+    <javaee.web.api.version>8.0.1</javaee.web.api.version>
   </properties>
 
   <dependencies>
+    <!-- Java EE Web API for Tomcat 9 -->
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
@@ -45,51 +48,53 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <!-- JSTL -->
+    <!-- JSTL for Tomcat 9 -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
 
-    <!-- Database Dependencies -->
+    <!-- Updated Database Dependencies -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-dbcp2</artifactId>
-      <version>2.1.1</version>
+      <version>2.9.0</version>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.30</version>
+      <version>8.0.33</version>
     </dependency>
 
-    <!-- Test Dependency -->
+    <!-- Updated Test Dependency -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Maven Compiler Plugin -->
+      <!-- Maven Compiler Plugin for Java 17 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
         <configuration>
-          <source>21</source>
-          <target>21</target>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
         </configuration>
       </plugin>
 
+      <!-- Maven WAR Plugin for Tomcat 9 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.3.2</version>
+        <version>3.4.0</version>
         <configuration>
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
@@ -108,8 +113,8 @@
           <region>Central US</region>
           <runtime>
             <os>Linux</os>
-            <javaVersion>Java 21</javaVersion>
-            <webContainer>Tomcat 10.0</webContainer>
+            <javaVersion>Java 17</javaVersion>
+            <webContainer>Tomcat 9.0</webContainer>
           </runtime>
           <deployment>
             <resources>
@@ -124,5 +129,6 @@
         </configuration>
       </plugin>
     </plugins>
+    <finalName>tenantmanagement</finalName>
   </build>
 </project>
